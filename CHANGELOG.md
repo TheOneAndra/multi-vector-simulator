@@ -41,6 +41,7 @@ Here is a template for new release sections
 - Create mapping between EPA and MVS parameter names (#625)
 - Create parameter parser from EPA to MVS (#625)
 - Create parameter parser from MVS to EPA (#625)
+- `energyBusses` now have to be defined by the user via `energyBusses.csv`
 
 ### Changed
 - Order of readthedocs content (#590)
@@ -67,6 +68,8 @@ Here is a template for new release sections
 - Replace `==` by `is` in expression with `True`, `False` or `None` (#625)
 - Remove unused `dict_values` argument of function `receive_timeseries_from_csv` (#625)
 - Move the end of the function `receive_timeseries_from_csv` into `C0.compute_timeseries_properties()` (#625)
+- The functions used to derive `energyBusses` and update `dict_values` are changed to validation functions
+- All tests and benchmark tests are adapted to `energyBusses` being defined manually
 
 ### Removed
 - Parameter label from input csv files; label is now set by filenames (for `project_data`, `economic_data`, `simulation_settings`) and column headers (for `energyConsumption`, `energyConversion`, `energyProduction`, `energyProviders`), special for storage: `filename` + `column header` (#602)
