@@ -420,10 +420,10 @@ def energyStorage(dict_values, group):
 
         # define input and output bus names
         dict_values[group][asset].update(
-            {INPUT_BUS_NAME: bus_suffix(dict_values[group][asset][INFLOW_DIRECTION])}
+            {INPUT_BUS_NAME: dict_values[group][asset][INFLOW_DIRECTION]}
         )
         dict_values[group][asset].update(
-            {OUTPUT_BUS_NAME: bus_suffix(dict_values[group][asset][OUTFLOW_DIRECTION])}
+            {OUTPUT_BUS_NAME: dict_values[group][asset][OUTFLOW_DIRECTION]}
         )
 
 
@@ -464,7 +464,7 @@ def energyConsumption(dict_values, group):
         )
         if INPUT_BUS_NAME not in dict_values[group][asset]:
             dict_values[group][asset].update(
-                {INPUT_BUS_NAME: bus_suffix(dict_values[group][asset][ENERGY_VECTOR])}
+                {INPUT_BUS_NAME: dict_values[group][asset][ENERGY_VECTOR]}
             )
 
         if FILENAME in dict_values[group][asset]:
@@ -599,7 +599,7 @@ def add_busses_of_asset_depending_on_in_out_direction(
                 # Checking each bus of the list
                 for subbus in bus:
                     # Append bus name to bus_list
-                    bus_list.append(bus_suffix(subbus))
+                    bus_list.append(subbus)
                     # Check if bus of the direction is already contained in energyBusses
                     add_asset_to_asset_dict_of_bus(
                         bus=subbus,
@@ -619,27 +619,7 @@ def add_busses_of_asset_depending_on_in_out_direction(
                     asset_label=dict_asset[LABEL],
                 )
                 # Add bus_name_key to dict_asset
-                dict_asset.update({bus_name_key: bus_suffix(bus)})
-
-
-def bus_suffix(bus_direction):
-    """
-    Returns the name of a bus with the suffix defined in constants_json_strings.py (BUS_SUFFIX)
-
-    It is possible that the suffix will be dropped later on, in case that users always enter the directions with suffix " bus" anyway.
-
-    Parameters
-    ----------
-    bus_direction: str
-        A string, ie. a bus name
-
-    Returns
-    -------
-    Above string with BUS_SUFFIX
-    """
-    bus_label = bus_direction + BUS_SUFFIX
-    return bus_label
-
+                dict_asset.update({bus_name_key: bus})
 
 def add_asset_to_asset_dict_of_bus(bus, dict_values, asset_key, asset_label):
     """
@@ -923,11 +903,9 @@ def define_transformer_for_peak_demand_pricing(
         OPTIMIZE_CAP: {VALUE: True, UNIT: TYPE_BOOL},
         INSTALLED_CAP: {VALUE: 0, UNIT: dict_dso[UNIT]},
         INFLOW_DIRECTION: dict_dso[INFLOW_DIRECTION] + DSO_PEAK_DEMAND_BUS_NAME,
-        INPUT_BUS_NAME: bus_suffix(
-            dict_dso[INFLOW_DIRECTION] + DSO_PEAK_DEMAND_BUS_NAME
-        ),
+        INPUT_BUS_NAME: dict_dso[INFLOW_DIRECTION] + DSO_PEAK_DEMAND_BUS_NAME,
         OUTFLOW_DIRECTION: dict_dso[OUTFLOW_DIRECTION],
-        OUTPUT_BUS_NAME: bus_suffix(dict_dso[OUTFLOW_DIRECTION]),
+        OUTPUT_BUS_NAME: dict_dso[OUTFLOW_DIRECTION],
         AVAILABILITY_DISPATCH: timeseries_availability,
         EFFICIENCY: {VALUE: 1, UNIT: "factor"},
         DEVELOPMENT_COSTS: {VALUE: 0, UNIT: CURR},
@@ -1059,9 +1037,9 @@ def get_name_or_names_of_in_or_output_bus(bus):
     if isinstance(bus, list):
         bus_name = []
         for bus_item in bus:
-            bus_name.append(bus_suffix(bus_item))
+            bus_name.append(bus_item)
     else:
-        bus_name = bus_suffix(bus)
+        bus_name = bus
     return bus_name
 
 
@@ -1152,7 +1130,7 @@ def define_sink(
     """
 
     # create name of bus. Check if multiple busses are given
-    input_direction = remove_bus_suffix(input_bus_name)
+    input_direction = input_bus_name
 
     # create a dictionary for the sink
     sink = {
