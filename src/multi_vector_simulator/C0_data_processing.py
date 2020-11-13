@@ -569,7 +569,6 @@ def add_busses_of_asset_depending_on_in_out_direction(
     Returns
     -------
     Updated dict_values with potentially additional busses of the energy system.
-    #todo: still valid? Updated dict_asset with the input_bus_name
     """
     for direction in [INFLOW_DIRECTION, OUTFLOW_DIRECTION]:
         # This is the parameter that will be added to dict_asset as the bus_name_key

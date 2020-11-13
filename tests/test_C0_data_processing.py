@@ -198,8 +198,6 @@ def test_define_transformer_for_peak_demand_pricing():
         DEVELOPMENT_COSTS,
         SPECIFIC_COSTS_OM,
         OEMOF_ASSET_TYPE,
-        INFLOW_DIRECTION,
-        OUTPUT_BUS_NAME,
         EFFICIENCY,
         ENERGY_VECTOR,
     ]:
