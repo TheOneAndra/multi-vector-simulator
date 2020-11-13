@@ -61,8 +61,10 @@ def all(dict_values):
     :return Pre-processed dictionary with all input parameters
 
     """
-    pp.pprint(dict_values[ENERGY_BUSSES])
+    # Check if any asset label has duplicates
+    C1.check_for_label_duplicates(dict_values)
 
+    pp.pprint(dict_values[ENERGY_BUSSES])
     B0.retrieve_date_time_info(dict_values[SIMULATION_SETTINGS])
     add_economic_parameters(dict_values[ECONOMIC_DATA])
     identify_energy_vectors(dict_values)
@@ -86,6 +88,9 @@ def all(dict_values):
     C1.check_for_sufficient_assets_on_busses(dict_values)
 
     pp.pprint(dict_values[ENERGY_BUSSES])
+
+    # just to be safe, run evaluation a second time
+    C1.check_for_label_duplicates(dict_values)
 
     F0.store_as_json(
         dict_values,
