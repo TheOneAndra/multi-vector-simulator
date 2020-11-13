@@ -121,7 +121,7 @@ def evaluate_dict(dict_values, results_main, results_meta):
             dict_values[ENERGY_STORAGE][storage][OUTFLOW_DIRECTION]
             in dict_values[OPTIMIZED_FLOWS].keys()
         ):
-            bus_name = dict_values[ENERGY_STORAGE][storage][INFLOW_DIRECTION]
+            inflow_direction = dict_values[ENERGY_STORAGE][storage][INFLOW_DIRECTION]
             timeseries_name = (
                 dict_values[ENERGY_STORAGE][storage][LABEL]
                 + " ("
@@ -139,7 +139,7 @@ def evaluate_dict(dict_values, results_main, results_meta):
                 + ") SOC"
             )
 
-            dict_values[OPTIMIZED_FLOWS][bus_name][timeseries_name] = dict_values[
+            dict_values[OPTIMIZED_FLOWS][inflow_direction][timeseries_name] = dict_values[
                 ENERGY_STORAGE
             ][storage]["timeseries_soc"]
 

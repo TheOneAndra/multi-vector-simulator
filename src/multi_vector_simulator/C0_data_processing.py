@@ -283,10 +283,10 @@ def define_excess_sinks(dict_values):
             inflow_direction=bus,
             energy_vector=energy_vector,
         )
-        dict_values[ENERGY_BUSSES][bus_name].update({EXCESS: excess_sink_name})
+        dict_values[ENERGY_BUSSES][bus].update({EXCESS: excess_sink_name})
         auto_sinks.append(excess_sink_name)
         logging.debug(
-            f"Created excess sink for energy bus {bus_name}, connected to {ENERGY_VECTOR} {energy_vector}."
+            f"Created excess sink for energy bus {bus}, connected to {ENERGY_VECTOR} {energy_vector}."
         )
     return auto_sinks
 
