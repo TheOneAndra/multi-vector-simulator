@@ -571,12 +571,6 @@ def add_busses_of_asset_depending_on_in_out_direction(
     Updated dict_values with potentially additional busses of the energy system.
     """
     for direction in [INFLOW_DIRECTION, OUTFLOW_DIRECTION]:
-        # This is the parameter that will be added to dict_asset as the bus_name_key
-        if direction == INFLOW_DIRECTION:
-            bus_name_key = INFLOW_DIRECTION
-        else:
-            bus_name_key = OUTFLOW_DIRECTION
-
         energy_vector = dict_asset[ENERGY_VECTOR]
         # Check if the asset has an INFLOW_DIRECTION or OUTFLOW_DIRECTION
         if direction in dict_asset:
