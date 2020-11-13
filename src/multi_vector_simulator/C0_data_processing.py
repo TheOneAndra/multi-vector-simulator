@@ -590,8 +590,7 @@ def add_busses_of_asset_depending_on_in_out_direction(
                         asset_key=asset_key,
                         asset_label=dict_asset[LABEL],
                     )
-                # Add bus_name_key to dict_asset
-                dict_asset.update({bus_name_key: bus_list})
+
             # If false: Only one bus
             else:
                 # Check if bus of the direction is already contained in energyBusses
@@ -601,8 +600,6 @@ def add_busses_of_asset_depending_on_in_out_direction(
                     asset_key=asset_key,
                     asset_label=dict_asset[LABEL],
                 )
-                # Add bus_name_key to dict_asset
-                dict_asset.update({bus_name_key: bus})
 
 def add_asset_to_asset_dict_of_bus(bus, dict_values, asset_key, asset_label):
     """
