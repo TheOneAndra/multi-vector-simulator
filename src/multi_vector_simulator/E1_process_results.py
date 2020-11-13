@@ -21,7 +21,7 @@ from multi_vector_simulator.utils.constants_json_strings import (
     OUTPUT_POWER,
     STORAGE_CAPACITY,
     TIME_INDEX,
-    INPUT_BUS_NAME,
+    INFLOW_DIRECTION,
     OUTPUT_BUS_NAME,
     KPI_SCALARS_DICT,
     OPTIMIZED_FLOWS,
@@ -144,7 +144,7 @@ def get_storage_results(settings, storage_bus, dict_asset):
 
     """
     power_charge = storage_bus["sequences"][
-        ((dict_asset[INPUT_BUS_NAME], dict_asset[LABEL]), "flow")
+        ((dict_asset[INFLOW_DIRECTION], dict_asset[LABEL]), "flow")
     ]
     add_info_flows(settings, dict_asset[INPUT_POWER], power_charge)
 
@@ -161,7 +161,7 @@ def get_storage_results(settings, storage_bus, dict_asset):
     if OPTIMIZE_CAP in dict_asset:
         if dict_asset[OPTIMIZE_CAP][VALUE] is True:
             power_charge = storage_bus["scalars"][
-                ((dict_asset[INPUT_BUS_NAME], dict_asset[LABEL]), "invest")
+                ((dict_asset[INFLOW_DIRECTION], dict_asset[LABEL]), "invest")
             ]
             dict_asset[INPUT_POWER].update(
                 {
@@ -348,7 +348,7 @@ def get_parameter_to_be_evaluated_from_oemof_results(asset_group, asset_label):
     - test_get_parameter_to_be_evaluated_from_oemof_results()
     """
     if asset_group in ASSET_GROUPS_DEFINED_BY_INFLUX:
-        parameter_to_be_evaluated = INPUT_BUS_NAME
+        parameter_to_be_evaluated = INFLOW_DIRECTION
 
     elif asset_group in ASSET_GROUPS_DEFINED_BY_OUTFLUX:
         parameter_to_be_evaluated = OUTPUT_BUS_NAME

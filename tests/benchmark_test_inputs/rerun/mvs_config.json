@@ -69,7 +69,6 @@
                 "unit": "currency/kW",
                 "value": 0
             },
-            "input_bus_name": "Electricity (DSO) bus",
             "input_direction": "Electricity (DSO)",
             "installedCap": {
                 "unit": "unit",
@@ -124,7 +123,6 @@
                 "unit": "currency/unit",
                 "value": 0
             },
-            "input_bus_name": "Electricity bus",
             "input_direction": "Electricity",
             "installedCap": {
                 "unit": "unit",
@@ -183,7 +181,6 @@
             "energyVector": "Electricity",
             "file_name": "demand_harbor.csv",
             "inflow_direction": "Electricity",
-            "input_bus_name": "Electricity bus",
             "installedCap": {
                 "unit": "unit",
                 "value": 0.0
@@ -255,7 +252,6 @@
             "energyVector": "Electricity",
             "file_name": "demand_remaining.csv",
             "inflow_direction": "Electricity",
-            "input_bus_name": "Electricity bus",
             "installedCap": {
                 "unit": "unit",
                 "value": 0.0
@@ -327,7 +323,6 @@
             "energyVector": "Electricity",
             "file_name": "demand_shore_power.csv",
             "inflow_direction": "Electricity",
-            "input_bus_name": "Electricity bus",
             "installedCap": {
                 "unit": "unit",
                 "value": 0.0
@@ -407,7 +402,6 @@
             },
             "energyVector": "Electricity",
             "inflow_direction": "PV plant (mono)",
-            "input_bus_name": "PV plant (mono) bus",
             "installedCap": {
                 "unit": "kW",
                 "value": 0.0
@@ -477,7 +471,6 @@
             },
             "energyVector": "Electricity",
             "inflow_direction": "Electricity",
-            "input_bus_name": "Electricity bus",
             "installedCap": {
                 "unit": "kW",
                 "value": 0.0
@@ -547,7 +540,6 @@
             },
             "energyVector": "Electricity",
             "inflow_direction": "ESS Li-Ion",
-            "input_bus_name": "ESS Li-Ion bus",
             "installedCap": {
                 "unit": "kW",
                 "value": 0.0
@@ -617,7 +609,6 @@
             },
             "energyVector": "Electricity",
             "inflow_direction": "Electricity (DSO)",
-            "input_bus_name": "Electricity (DSO) bus",
             "installedCap": {
                 "unit": "kW",
                 "value": 1250
@@ -687,7 +678,6 @@
             },
             "energyVector": "Electricity",
             "inflow_direction": "Electricity",
-            "input_bus_name": "Electricity bus",
             "installedCap": {
                 "unit": "kW",
                 "value": 1250
@@ -1037,7 +1027,6 @@
                 },
                 "unit": "kW"
             },
-            "input_bus_name": "ESS Li-Ion bus",
             "label": "ESS Li-Ion",
             "optimizeCap": {
                 "unit": "bool",

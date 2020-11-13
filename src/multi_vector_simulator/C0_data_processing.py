@@ -273,14 +273,14 @@ def define_excess_sinks(dict_values):
     Updates dict_values
     """
     auto_sinks = []
-    for bus_name in dict_values[ENERGY_BUSSES]:
-        excess_sink_name = bus_name + EXCESS
-        energy_vector = dict_values[ENERGY_BUSSES][bus_name][ENERGY_VECTOR]
+    for bus in dict_values[ENERGY_BUSSES]:
+        excess_sink_name =  bus + EXCESS
+        energy_vector = dict_values[ENERGY_BUSSES][bus][ENERGY_VECTOR]
         define_sink(
             dict_values=dict_values,
             asset_name=excess_sink_name,
             price={VALUE: 0, UNIT: CURR + "/" + UNIT},
-            input_bus_name=bus_name,
+            inflow_direction=bus,
             energy_vector=energy_vector,
         )
         dict_values[ENERGY_BUSSES][bus_name].update({EXCESS: excess_sink_name})
@@ -418,10 +418,6 @@ def energyStorage(dict_values, group):
             # check if maximumCap exists and add it to dict_values
             process_maximum_cap_constraint(dict_values, group, asset, subasset)
 
-        # define input and output bus names
-        dict_values[group][asset].update(
-            {INPUT_BUS_NAME: dict_values[group][asset][INFLOW_DIRECTION]}
-        )
         dict_values[group][asset].update(
             {OUTPUT_BUS_NAME: dict_values[group][asset][OUTFLOW_DIRECTION]}
         )
@@ -462,9 +458,9 @@ def energyConsumption(dict_values, group):
             dict_values[ECONOMIC_DATA],
             dict_values[group][asset],
         )
-        if INPUT_BUS_NAME not in dict_values[group][asset]:
+        if INFLOW_DIRECTION not in dict_values[group][asset]:
             dict_values[group][asset].update(
-                {INPUT_BUS_NAME: dict_values[group][asset][ENERGY_VECTOR]}
+                {INFLOW_DIRECTION: dict_values[group][asset][ENERGY_VECTOR]}
             )
 
         if FILENAME in dict_values[group][asset]:
@@ -527,6 +523,7 @@ def define_missing_cost_data(dict_values, dict_asset):
 
 
 def define_busses(dict_values):
+    #todo this function is not used anymore
     """
     This function defines the ENERGY_BUSSES that the energy system model is comprised of.
     For that, it adds each new bus defined as INPUT_DIRECTION or OUTPUT_DIRECTION in all assets
@@ -563,8 +560,6 @@ def add_busses_of_asset_depending_on_in_out_direction(
     Check if the INPUT_DIRECTION and OUTPUT_DIRECTION, ie the bus, of an asset is already included in energyBusses.
     Otherwise, add to dict_values(ENERGY_BUSSES).
 
-    Translates INPUT_DIRECTION and OUTPUT_DIRECTION into INPUT_BUS_NAME and OUTPUT_BUS_NAME.
-
     Parameters
     ----------
     dict_values: dict
@@ -579,14 +574,14 @@ def add_busses_of_asset_depending_on_in_out_direction(
     Returns
     -------
     Updated dict_values with potentially additional busses of the energy system.
-    Updated dict_asset with the input_bus_name
+    #todo: still valid? Updated dict_asset with the input_bus_name
     """
     for direction in [INFLOW_DIRECTION, OUTFLOW_DIRECTION]:
         # This is the parameter that will be added to dict_asset as the bus_name_key
         if direction == INFLOW_DIRECTION:
-            bus_name_key = INPUT_BUS_NAME
+            bus_name_key = INFLOW_DIRECTION
         else:
-            bus_name_key = OUTPUT_BUS_NAME
+            bus_name_key = OUTFLOW_DIRECTION
 
         energy_vector = dict_asset[ENERGY_VECTOR]
         # Check if the asset has an INFLOW_DIRECTION or OUTFLOW_DIRECTION
@@ -706,7 +701,7 @@ def define_dso_sinks_and_sources(dict_values, dso):
         dict_values=dict_values,
         asset_name=dso + DSO_FEEDIN + AUTO_SINK,
         price=dict_values[ENERGY_PROVIDERS][dso][FEEDIN_TARIFF],
-        input_bus_name=dict_values[ENERGY_PROVIDERS][dso][INPUT_BUS_NAME],
+        inflow_direction=dict_values[ENERGY_PROVIDERS][dso][INFLOW_DIRECTION],
         specific_costs={VALUE: 0, UNIT: CURR + "/" + UNIT},
         energy_vector=dict_values[ENERGY_PROVIDERS][dso][ENERGY_VECTOR],
     )
@@ -903,7 +898,6 @@ def define_transformer_for_peak_demand_pricing(
         OPTIMIZE_CAP: {VALUE: True, UNIT: TYPE_BOOL},
         INSTALLED_CAP: {VALUE: 0, UNIT: dict_dso[UNIT]},
         INFLOW_DIRECTION: dict_dso[INFLOW_DIRECTION] + DSO_PEAK_DEMAND_BUS_NAME,
-        INPUT_BUS_NAME: dict_dso[INFLOW_DIRECTION] + DSO_PEAK_DEMAND_BUS_NAME,
         OUTFLOW_DIRECTION: dict_dso[OUTFLOW_DIRECTION],
         OUTPUT_BUS_NAME: dict_dso[OUTFLOW_DIRECTION],
         AVAILABILITY_DISPATCH: timeseries_availability,
@@ -1095,7 +1089,7 @@ def determine_dispatch_price(dict_values, price, source):
 
 
 def define_sink(
-    dict_values, asset_name, price, input_bus_name, energy_vector, **kwargs
+    dict_values, asset_name, price, inflow_direction, energy_vector, **kwargs
 ):
     r"""
     This automatically defines a sink for an oemof-sink object. The sinks are added to the energyConsumption assets.
@@ -1111,8 +1105,8 @@ def define_sink(
     price: float
         Price of dispatch of the asset
 
-    input_direction: str
-        Direction from which energy is provided to the sink, used to create inbut bus name
+    inflow_direction: str
+        Direction from which energy is provided to the sink
 
     kwargs: Misc
         Common parameters:
@@ -1129,15 +1123,11 @@ def define_sink(
     - Used to define feed-in sink for each DSO
     """
 
-    # create name of bus. Check if multiple busses are given
-    input_direction = input_bus_name
-
     # create a dictionary for the sink
     sink = {
         OEMOF_ASSET_TYPE: OEMOF_SINK,
         LABEL: asset_name + AUTO_SINK,
-        INFLOW_DIRECTION: input_direction,
-        INPUT_BUS_NAME: input_bus_name,
+        INFLOW_DIRECTION: inflow_direction,
         # OPEX_VAR: {VALUE: price, UNIT: CURR + "/" + UNIT},
         LIFETIME: {
             VALUE: dict_values[ECONOMIC_DATA][PROJECT_DURATION][VALUE],

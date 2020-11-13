@@ -22,7 +22,7 @@ from multi_vector_simulator.utils.constants_json_strings import (
     INPUT_POWER,
     OUTPUT_POWER,
     STORAGE_CAPACITY,
-    INPUT_BUS_NAME,
+    INFLOW_DIRECTION,
     OUTPUT_BUS_NAME,
     OPTIMIZED_ADD_CAP,
     KPI,
@@ -115,13 +115,13 @@ def evaluate_dict(dict_values, results_main, results_meta):
             )
 
         if (
-            dict_values[ENERGY_STORAGE][storage][INPUT_BUS_NAME]
+            dict_values[ENERGY_STORAGE][storage][INFLOW_DIRECTION]
             in dict_values[OPTIMIZED_FLOWS].keys()
         ) or (
             dict_values[ENERGY_STORAGE][storage][OUTPUT_BUS_NAME]
             in dict_values[OPTIMIZED_FLOWS].keys()
         ):
-            bus_name = dict_values[ENERGY_STORAGE][storage][INPUT_BUS_NAME]
+            bus_name = dict_values[ENERGY_STORAGE][storage][INFLOW_DIRECTION]
             timeseries_name = (
                 dict_values[ENERGY_STORAGE][storage][LABEL]
                 + " ("
