@@ -23,7 +23,7 @@ from multi_vector_simulator.utils.constants_json_strings import (
     OUTPUT_POWER,
     STORAGE_CAPACITY,
     INFLOW_DIRECTION,
-    OUTPUT_BUS_NAME,
+    OUTFLOW_DIRECTION,
     OPTIMIZED_ADD_CAP,
     KPI,
     KPI_COST_MATRIX,
@@ -118,7 +118,7 @@ def evaluate_dict(dict_values, results_main, results_meta):
             dict_values[ENERGY_STORAGE][storage][INFLOW_DIRECTION]
             in dict_values[OPTIMIZED_FLOWS].keys()
         ) or (
-            dict_values[ENERGY_STORAGE][storage][OUTPUT_BUS_NAME]
+            dict_values[ENERGY_STORAGE][storage][OUTFLOW_DIRECTION]
             in dict_values[OPTIMIZED_FLOWS].keys()
         ):
             bus_name = dict_values[ENERGY_STORAGE][storage][INFLOW_DIRECTION]

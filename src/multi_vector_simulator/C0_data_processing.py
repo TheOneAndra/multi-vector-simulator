@@ -418,11 +418,6 @@ def energyStorage(dict_values, group):
             # check if maximumCap exists and add it to dict_values
             process_maximum_cap_constraint(dict_values, group, asset, subasset)
 
-        dict_values[group][asset].update(
-            {OUTPUT_BUS_NAME: dict_values[group][asset][OUTFLOW_DIRECTION]}
-        )
-
-
 def energyProviders(dict_values, group):
     """
 
@@ -899,7 +894,6 @@ def define_transformer_for_peak_demand_pricing(
         INSTALLED_CAP: {VALUE: 0, UNIT: dict_dso[UNIT]},
         INFLOW_DIRECTION: dict_dso[INFLOW_DIRECTION] + DSO_PEAK_DEMAND_BUS_NAME,
         OUTFLOW_DIRECTION: dict_dso[OUTFLOW_DIRECTION],
-        OUTPUT_BUS_NAME: dict_dso[OUTFLOW_DIRECTION],
         AVAILABILITY_DISPATCH: timeseries_availability,
         EFFICIENCY: {VALUE: 1, UNIT: "factor"},
         DEVELOPMENT_COSTS: {VALUE: 0, UNIT: CURR},
@@ -950,14 +944,10 @@ def define_source(
     -------
     Standard source defined as:
     """
-
-    output_bus_name = get_name_or_names_of_in_or_output_bus(output_bus_direction)
-
     default_source_dict = {
         OEMOF_ASSET_TYPE: OEMOF_SOURCE,
         LABEL: asset_key + AUTO_SOURCE,
         OUTFLOW_DIRECTION: output_bus_direction,
-        OUTPUT_BUS_NAME: output_bus_name,
         DISPATCHABILITY: True,
         # OPEX_VAR: {VALUE: price, UNIT: CURR + "/" + UNIT},
         LIFETIME: {

@@ -30,7 +30,7 @@ from multi_vector_simulator.utils.constants_json_strings import (
     TIMESERIES_NORMALIZED,
     TIMESERIES_PEAK,
     INFLOW_DIRECTION,
-    OUTPUT_BUS_NAME,
+    OUTFLOW_DIRECTION,
     SIMULATION_ANNUITY,
     MAXIMUM_CAP,
 )
@@ -113,12 +113,12 @@ class TestTransformerComponent:
         if multiple_outputs == True:
             output_bus_list = [
                 self.model.entities[-1].outputs.data[self.busses[bus_name]]
-                for bus_name in dict_asset[OUTPUT_BUS_NAME]
+                for bus_name in dict_asset[OUTFLOW_DIRECTION]
             ]
         else:
             output_bus_list = [
                 self.model.entities[-1].outputs.data[
-                    self.busses[dict_asset[OUTPUT_BUS_NAME]]
+                    self.busses[dict_asset[OUTFLOW_DIRECTION]]
                 ]
             ]
         for output_bus in output_bus_list:
@@ -438,7 +438,7 @@ class TestSourceComponent:
         # check output bus (`actual_value`, `investment` and `variable_costs`).
         # these values are expected to be different depending on `dispatchable`, `mode` and `timeseries`
         output_bus = self.model.entities[-1].outputs[
-            self.busses[dict_asset[OUTPUT_BUS_NAME]]
+            self.busses[dict_asset[OUTFLOW_DIRECTION]]
         ]
         if mode == "fix":
             assert (

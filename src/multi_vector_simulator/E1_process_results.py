@@ -22,7 +22,7 @@ from multi_vector_simulator.utils.constants_json_strings import (
     STORAGE_CAPACITY,
     TIME_INDEX,
     INFLOW_DIRECTION,
-    OUTPUT_BUS_NAME,
+    OUTFLOW_DIRECTION,
     KPI_SCALARS_DICT,
     OPTIMIZED_FLOWS,
     UNIT,
@@ -149,7 +149,7 @@ def get_storage_results(settings, storage_bus, dict_asset):
     add_info_flows(settings, dict_asset[INPUT_POWER], power_charge)
 
     power_discharge = storage_bus["sequences"][
-        ((dict_asset[LABEL], dict_asset[OUTPUT_BUS_NAME]), "flow")
+        ((dict_asset[LABEL], dict_asset[OUTFLOW_DIRECTION]), "flow")
     ]
     add_info_flows(settings, dict_asset[OUTPUT_POWER], power_discharge)
 
@@ -178,7 +178,7 @@ def get_storage_results(settings, storage_bus, dict_asset):
             )
 
             power_discharge = storage_bus["scalars"][
-                ((dict_asset[LABEL], dict_asset[OUTPUT_BUS_NAME]), "invest")
+                ((dict_asset[LABEL], dict_asset[OUTFLOW_DIRECTION]), "invest")
             ]
             dict_asset[OUTPUT_POWER].update(
                 {
@@ -351,7 +351,7 @@ def get_parameter_to_be_evaluated_from_oemof_results(asset_group, asset_label):
         parameter_to_be_evaluated = INFLOW_DIRECTION
 
     elif asset_group in ASSET_GROUPS_DEFINED_BY_OUTFLUX:
-        parameter_to_be_evaluated = OUTPUT_BUS_NAME
+        parameter_to_be_evaluated = OUTFLOW_DIRECTION
 
     else:
         logging.warning(

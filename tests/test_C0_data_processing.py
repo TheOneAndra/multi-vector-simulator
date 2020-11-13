@@ -23,7 +23,7 @@ from multi_vector_simulator.utils.constants_json_strings import (
     AVAILABILITY_DISPATCH,
     OEMOF_ASSET_TYPE,
     INFLOW_DIRECTION,
-    OUTPUT_BUS_NAME,
+    OUTFLOW_DIRECTION,
     EFFICIENCY,
     TAX,
     AGE_INSTALLED,
