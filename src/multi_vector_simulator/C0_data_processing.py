@@ -1171,7 +1171,7 @@ def define_sink(
     # If multiple input busses exist
     apply_function_to_single_or_list(
         function=add_asset_to_asset_dict_of_bus,
-        parameter=input_direction,
+        parameter=inflow_direction,
         dict_values=dict_values,
         asset_key=asset_name,
         asset_label=sink[LABEL],
