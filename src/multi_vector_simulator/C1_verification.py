@@ -58,7 +58,8 @@ from multi_vector_simulator.utils.constants_json_strings import (
     RENEWABLE_ASSET_BOOL,
     TIMESERIES,
 )
-
+# Necessary for check_for_label_duplicates()
+from collections import Counter
 
 # web-application: valid input directly connected to cell-input
 class DuplicateLabels(ValueError):
@@ -141,11 +142,11 @@ def check_for_label_duplicates(dict_values):
     pass or error message: DuplicateLabels
     """
     values_of_label = find_value_by_key(dict_values, LABEL)
+    count = Counter(values_of_label)
     msg = ""
-    for value in values_of_label:
-        occurrences = values_of_label.count(value)
-        if occurrences > 1:
-            msg += f"Following asset label is not unique with {occurrences} occurrences: {value}. \n"
+    for item in count:
+        if count[item] > 1:
+            msg += f"Following asset label is not unique with {count[item]} occurrences: {item}. \n"
     if len(msg) > 1:
         msg += f"Please make sure that each label is only used once, as oemof otherwise can not build the model."
         raise DuplicateLabels(msg)
