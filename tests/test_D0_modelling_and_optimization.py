@@ -93,7 +93,6 @@ def test_if_model_building_time_measured_and_stored():
     assert "modelling_time" in dict_values[SIMULATION_RESULTS]
     assert isinstance(dict_values[SIMULATION_RESULTS]["modelling_time"], float)
 
-
 def test_energysystem_initialized(dict_values_minimal):
     model, dict_model = D0.model_building.initialize(dict_values_minimal)
     for k in (
