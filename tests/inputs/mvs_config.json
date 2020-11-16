@@ -21,11 +21,26 @@
         }
     },
     "energyBusses": {
-        "Electricity": {"label": "Electricity", "energyVector": "Electricity"},
-        "ESS Li-Ion": {"label": "ESS Li-Ion", "energyVector": "Electricity"},
-        "PV plant (mono)": {"label": "PV plant (mono)", "energyVector": "Electricity"},
-        "Electricity (DSO)": {"label": "Electricity (DSO)", "energyVector": "Electricity"},
-        "Fuel": {"label": "Fuel", "energyVector": "Electricity"}
+        "ESS Li-Ion bus": {
+            "energyVector": "Electricity",
+            "label": "ESS Li-Ion bus"
+        },
+        "Electricity": {
+            "energyVector": "Electricity",
+            "label": "Electricity"
+        },
+        "Electricity (DSO)": {
+            "energyVector": "Electricity",
+            "label": "Electricity (DSO)"
+        },
+        "Fuel": {
+            "energyVector": "Electricity",
+            "label": "Fuel"
+        },
+        "PV plant (mono) bus": {
+            "energyVector": "Electricity",
+            "label": "PV plant (mono) bus"
+        }
 },
     "energyConsumption": {
         "demand_01": {
