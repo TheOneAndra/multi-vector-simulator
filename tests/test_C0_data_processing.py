@@ -286,7 +286,8 @@ def test_add_busses_of_asset_depending_on_in_out_direction_single():
     asset_label = "asset_label"
     energy_vector = "Electricity"
     dict_test = {
-        ENERGY_BUSSES: {},
+        ENERGY_BUSSES: {bus_names[0]:{LABEL: bus_names[0], ENERGY_VECTOR: energy_vector},
+                        bus_names[1]: {LABEL: bus_names[1], ENERGY_VECTOR: energy_vector}},
         ENERGY_CONVERSION: {
             asset_name: {
                 LABEL: asset_label,
@@ -299,11 +300,6 @@ def test_add_busses_of_asset_depending_on_in_out_direction_single():
     C0.add_busses_of_asset_depending_on_in_out_direction(
         dict_test, dict_test[ENERGY_CONVERSION][asset_name], asset_name
     )
-    for k in bus_names:
-        assert (
-            k in dict_test[ENERGY_BUSSES].keys()
-        ), f"Bus {k} is not added to the {ENERGY_BUSSES}."
-
     for bus in dict_test[ENERGY_BUSSES].keys():
         assert (
             asset_name in dict_test[ENERGY_BUSSES][bus][ASSET_DICT].keys()
