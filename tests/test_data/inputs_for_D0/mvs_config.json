@@ -82,7 +82,7 @@
                 "unit": "currency/kW",
                 "value": 0
             },
-            "input_direction": "Electricity (DSO)",
+            "inflow_direction": "Electricity (DSO) bus",
             "installedCap": {
                 "unit": "unit",
                 "value": 0.0
@@ -136,7 +136,7 @@
                 "unit": "currency/unit",
                 "value": 0
             },
-            "input_direction": "Electricity",
+            "inflow_direction": "Electricity",
             "installedCap": {
                 "unit": "unit",
                 "value": 0.0
@@ -723,7 +723,7 @@
                 "value": 1.0
             },
             "energyVector": "Electricity",
-            "inflow_direction": "PV plant (mono)",
+            "inflow_direction": "PV plant (mono) bus",
             "installedCap": {
                 "unit": "kW",
                 "value": 0.0
@@ -859,7 +859,7 @@
                 "value": 1
             },
             "energyVector": "Electricity",
-            "inflow_direction": "ESS Li-Ion",
+            "inflow_direction": "ESS Li-Ion bus",
             "installedCap": {
                 "unit": "kW",
                 "value": 0.0
@@ -927,7 +927,7 @@
                 "value": 0.96
             },
             "energyVector": "Electricity",
-            "inflow_direction": "Electricity (DSO)",
+            "inflow_direction": "Electricity (DSO) bus",
             "installedCap": {
                 "unit": "kW",
                 "value": 1250
@@ -1623,7 +1623,7 @@
                 "unit": "currency/kWh",
                 "value": 0.4
             },
-            "inflow_direction": "Electricity (DSO)",
+            "inflow_direction": "Electricity (DSO) bus",
             "installedCap": {
                 "unit": "unit",
                 "value": 0.0
@@ -1677,7 +1677,7 @@
     "energyStorage": {
         "storage_01": {
             "energyVector": "Electricity",
-            "inflow_direction": "ESS Li-Ion",
+            "inflow_direction": "ESS Li-Ion bus",
             "input power": {
                 "age_installed": {
                     "unit": "year",
