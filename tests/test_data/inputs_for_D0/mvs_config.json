@@ -762,7 +762,7 @@
                 "value": true
             },
             "outflow_direction": "Electricity",
-            "output_bus_name": "Electricity bus",
+            "outflow_direction": "Electricity bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 1.6925385855667836
@@ -831,7 +831,7 @@
                 "value": true
             },
             "outflow_direction": "ESS Li-Ion",
-            "output_bus_name": "ESS Li-Ion bus",
+            "outflow_direction": "ESS Li-Ion bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 0.0
@@ -900,7 +900,7 @@
                 "value": true
             },
             "outflow_direction": "Electricity",
-            "output_bus_name": "Electricity bus",
+            "outflow_direction": "Electricity bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 0.0
@@ -969,7 +969,7 @@
                 "value": false
             },
             "outflow_direction": "Electricity",
-            "output_bus_name": "Electricity bus",
+            "outflow_direction": "Electricity bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 0.0
@@ -1038,7 +1038,7 @@
                 "value": false
             },
             "outflow_direction": "Electricity (DSO)",
-            "output_bus_name": "Electricity (DSO) bus",
+            "outflow_direction": "Electricity (DSO) bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 0.0
@@ -1099,7 +1099,7 @@
                 "unit": "bool",
                 "value": true
             },
-            "output_bus_name": "Electricity (DSO) bus",
+            "outflow_direction": "Electricity (DSO) bus",
             "output_direction": "Electricity (DSO)",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
@@ -1377,7 +1377,7 @@
                 "value": true
             },
             "outflow_direction": "PV plant (mono)",
-            "output_bus_name": "PV plant (mono) bus",
+            "outflow_direction": "PV plant (mono) bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 3.3045050012511776
@@ -1827,7 +1827,7 @@
                 },
                 "unit": "kW"
             },
-            "output_bus_name": "ESS Li-Ion bus",
+            "outflow_direction": "ESS Li-Ion bus",
             "storage capacity": {
                 "age_installed": {
                     "unit": "year",
