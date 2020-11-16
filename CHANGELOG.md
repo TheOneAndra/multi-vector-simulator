@@ -31,9 +31,10 @@ Here is a template for new release sections
 - Move A1 and C0 custom exceptions into `multi_vector_simulator.utils.exceptions.py` (#656)
 - The functions used to derive `energyBusses` and update `dict_values` are changed to validation functions (#649)
 - All tests and benchmark tests are adapted to `energyBusses` being defined manually (#649)
+- Input for for `tests\test_F1_plotting.py` changed from `tests/test_data/inputs_F1_plot_es_graph` to default input folder `tests/inputs` (#649)
 
 ### Removed
--
+- Folder `tests/test_data/inputs_F1_plot_es_graph`, now using default input folder `tests/inputs` as input for `tests\test_F1_plotting.py` (#649)
 
 ### Fixed
 -
