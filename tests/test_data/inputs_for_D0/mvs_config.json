@@ -46,8 +46,8 @@
             "transformer_station_in": "Transformer station (DSO) consumption",
             "transformer_station_out": "Transformer station (DSO) feedin"}
         },
-        "Electricity bus": {
-          "label": "Electricity bus",
+        "Electricity": {
+          "label": "Electricity",
           "energyVector": "Electricity",
           "Asset_list": {
             "Electricity excess": "Electricity excess_sink",
@@ -762,7 +762,6 @@
                 "value": true
             },
             "outflow_direction": "Electricity",
-            "outflow_direction": "Electricity bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 1.6925385855667836
@@ -830,7 +829,6 @@
                 "unit": "bool",
                 "value": true
             },
-            "outflow_direction": "ESS Li-Ion",
             "outflow_direction": "ESS Li-Ion bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
@@ -900,7 +898,6 @@
                 "value": true
             },
             "outflow_direction": "Electricity",
-            "outflow_direction": "Electricity bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 0.0
@@ -969,7 +966,6 @@
                 "value": false
             },
             "outflow_direction": "Electricity",
-            "outflow_direction": "Electricity bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 0.0
@@ -1037,7 +1033,6 @@
                 "unit": "bool",
                 "value": false
             },
-            "outflow_direction": "Electricity (DSO)",
             "outflow_direction": "Electricity (DSO) bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
@@ -1100,7 +1095,6 @@
                 "value": true
             },
             "outflow_direction": "Electricity (DSO) bus",
-            "output_direction": "Electricity (DSO)",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
                 "value": 0.0
@@ -1376,7 +1370,6 @@
                 "unit": "bool",
                 "value": true
             },
-            "outflow_direction": "PV plant (mono)",
             "outflow_direction": "PV plant (mono) bus",
             "simulation_annuity": {
                 "unit": "currency/unit/simulation period",
@@ -1664,7 +1657,7 @@
                 "unit": "bool",
                 "value": true
             },
-            "outflow_direction": "Electricity (DSO)",
+            "outflow_direction": "Electricity (DSO) bus",
             "peak_demand_pricing": {
                 "unit": "currency/kW",
                 "value": 0
@@ -1758,7 +1751,7 @@
                 "unit": "bool",
                 "value": true
             },
-            "outflow_direction": "ESS Li-Ion",
+            "outflow_direction": "ESS Li-Ion bus",
             "output power": {
                 "age_installed": {
                     "unit": "year",
