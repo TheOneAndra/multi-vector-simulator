@@ -322,7 +322,7 @@ def test_update_bus():
     asset_label = "asset_label"
     energy_vector = "Electricity"
     dict_test = {
-        ENERGY_BUSSES: {},
+        ENERGY_BUSSES: {bus_name: {LABEL: bus_name, ENERGY_VECTOR: energy_vector}},
         ENERGY_CONVERSION: {
             asset_name: {
                 LABEL: asset_label,
@@ -337,18 +337,13 @@ def test_update_bus():
         asset_key=asset_name,
         asset_label=asset_label,
     )
-    assert (
-        bus_name in dict_test[ENERGY_BUSSES]
-    ), f"The {bus_name} is not added to the {ENERGY_BUSSES}."
+
     assert (
         asset_name in dict_test[ENERGY_BUSSES][bus_name][ASSET_DICT]
     ), f"The asset {asset_name} is not added to the list of assets attached to the bus."
     assert (
         dict_test[ENERGY_BUSSES][bus_name][ASSET_DICT][asset_name] == asset_label
     ), f"The asset {asset_name} is not added with its {LABEL} to the list of assets attached to the bus."
-    assert (
-        dict_test[ENERGY_BUSSES][bus_name][ENERGY_VECTOR] == energy_vector
-    ), f"The {ENERGY_VECTOR} of the added bus is not of the expected value."
 
 def test_apply_function_to_single_or_list_apply_to_single():
     def multiply(parameter):
