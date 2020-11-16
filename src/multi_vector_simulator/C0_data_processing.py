@@ -1612,7 +1612,7 @@ def process_maximum_cap_constraint(dict_values, group, asset, subasset=None):
             if asset_dict[MAXIMUM_CAP][VALUE] < asset_dict[INSTALLED_CAP][VALUE]:
                 message = (
                     f"The stated maximumCap in {group} {asset} is smaller than the "
-                    "installedCap. Please enter a greater maximumCap."
+                    f"installedCap ({asset_dict[MAXIMUM_CAP][VALUE]}/{asset_dict[INSTALLED_CAP][VALUE]}). Please enter a greater maximumCap."
                     "For this simulation, the maximumCap will be "
                     "disregarded and not be used in the simulation"
                 )
