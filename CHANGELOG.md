@@ -22,9 +22,13 @@ Here is a template for new release sections
 ## [Unreleased]
 
 ### Added
+- Warning for missing parameter when parsing inputs from epa to mvs (#656)
+- New module `exceptions.py` in `multi_vector_simulator.utils` to gather custom MVS exceptions (#656)
 - `energyBusses` now have to be defined by the user via `energyBusses.csv` (#649)
 
 ### Changed
+- Function `utils.compare_input_parameters_with_reference` accepts parameters as dict for json comparison (#656)
+- Move A1 and C0 custom exceptions into `multi_vector_simulator.utils.exceptions.py` (#656)
 - The functions used to derive `energyBusses` and update `dict_values` are changed to validation functions (#649)
 - All tests and benchmark tests are adapted to `energyBusses` being defined manually (#649)
 
