@@ -636,7 +636,7 @@ def add_asset_to_asset_dict_of_bus(bus, dict_values, asset_key, asset_label):
             map(str, dict_values[ENERGY_BUSSES].keys())
         )
         msg = (f"Asset {asset_key} has an inflow or outflow direction of {bus}. "
-               f"This bus is not defined in `energyBusses.csv`: {bus_string[:-1]}. "
+               f"This bus is not defined in `energyBusses.csv`: {bus_string}. "
                f"You may either have a typo in one of the files or need to add a bus to `energyBusses.csv`.")
         raise ValueError(msg)
 
