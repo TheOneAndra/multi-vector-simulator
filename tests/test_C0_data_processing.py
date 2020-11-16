@@ -287,7 +287,7 @@ def test_define_energyBusses():
     assert asset_names[5] in dict_test[ENERGY_BUSSES][out_bus_names[4]][ASSET_DICT], f"Asset {asset_names[5]} not added to the connected bus {out_bus_names[4]}"
     assert asset_names[5] in dict_test[ENERGY_BUSSES][out_bus_names[5]][ASSET_DICT], f"Asset {asset_names[5]} not added to the connected bus {out_bus_names[5]}"
 
-def test_add_busses_of_asset_depending_on_in_out_direction_single():
+def test_add_busses_of_asset_depending_on_in_out_direction():
     bus_names = ["bus_name_" + str(i) for i in range(1, 3)]
     asset_name = "asset"
     asset_label = "asset_label"
@@ -316,14 +316,14 @@ def test_add_busses_of_asset_depending_on_in_out_direction_single():
         ), f"The asset label of asset {asset_name} in the asset list of {bus} is of unexpected value."
 
 
-def test_update_bus():
+def test_add_asset_to_asset_dict_of_bus():
     bus_name = "bus_name"
     asset_name = "asset"
     asset_label = "asset_label"
     energy_vector = "Electricity"
     dict_test = {
         ENERGY_BUSSES: {bus_name: {LABEL: bus_name, ENERGY_VECTOR: energy_vector}},
-        ENERGY_CONVERSION: {
+        ENERGY_PROVIDERS: {
             asset_name: {
                 LABEL: asset_label,
                 OUTFLOW_DIRECTION: bus_name,
