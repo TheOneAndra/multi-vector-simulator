@@ -425,7 +425,7 @@ def ready_timeseries_plots(
         List containing the timeseries line plots dash components
     """
 
-    figs = plot_timeseries(dict_values, data_type)
+    figs = plot_timeseries(dict_values, data_type, sector_demands=sector_demands)
     plots = [
         insert_plotly_figure(fig, id_plot=comp_id, print_only=only_print)
         for comp_id, fig in figs.items()
