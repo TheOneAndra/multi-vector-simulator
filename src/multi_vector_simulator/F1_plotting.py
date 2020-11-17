@@ -62,7 +62,7 @@ Module F1 describes all the functions that create plots.
 """
 
 
-def convert_plot_data_to_dataframe(plot_data_dict, data_type):
+def convert_plot_data_to_dataframe(plot_data_dict, data_type, sector=None):
     """
 
     Parameters
