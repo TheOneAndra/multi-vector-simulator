@@ -908,11 +908,11 @@ def create_app(results_json, path_sim_output=None):
                     # ),
                                 children=ready_timeseries_plots(results_json, DEMANDS)
                             ),
-                            html.H4("Resources"),
-                            html.Div(
-                                children=ready_timeseries_plots(results_json, RESOURCES)
-                            ),
-                        ],
+                    insert_subsection(
+                        title="Resources",
+                        content=ready_timeseries_plots(
+                            results_json, data_type=RESOURCES
+                        ),
                     ),
                     insert_subsection(
                         title="Energy System Components",
