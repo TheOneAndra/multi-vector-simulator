@@ -908,8 +908,11 @@ def create_app(results_json, path_sim_output=None):
                     #         ),
                     #     ],
                     # ),
-                                children=ready_timeseries_plots(results_json, DEMANDS)
-                            ),
+                    html.Div(
+                        children=demands_resources_section(
+                            output_JSON_file=results_json, sectors=sectors
+                        )
+                    ),
                     insert_subsection(
                         title="Resources",
                         content=ready_timeseries_plots(
