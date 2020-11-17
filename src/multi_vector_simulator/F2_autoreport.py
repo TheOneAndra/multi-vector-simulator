@@ -535,6 +535,64 @@ def encode_image_file(img_path):
     return encoded_img
 
 
+def demands_resources_section(output_JSON_file, section_name=DEMANDS, sectors=None):
+    """This function creates a HTML Div element that holds an entire section with either the demands or the resources
+
+    Parameters
+    ----------
+    output_JSON_file
+    section_name
+
+    Returns
+    -------
+
+    """
+
+    if section_name is DEMANDS:
+
+        # Format the list of sectors
+        sec_list = """"""
+        for sec in sectors:
+            sec_list += "\n" + f"\u2022 {sec.upper()}"
+
+        # List of content
+        content_of_section = [
+            insert_body_text(
+                "The simulation was performed for the energy system "
+                "covering the following sectors: "
+            ),
+            insert_body_text(f"{sec_list}"),
+        ]
+
+        # Loop to generate the sector headings, sectoral-demands' tables and plots of the demands in each of the sectors
+        for sector in sectors:
+
+            # Determining the sector heading
+            sector_heading = sector.title() + " Demands"
+
+            # Collect the sector_specific demands in a dataframe
+            df_sector_demands = convert_demand_to_dataframe(
+                dict_values=output_JSON_file, sector_demands=sector
+            )
+
+            # Function call that generates a dash table from the above dataframe and saves it in a variable
+            table_with_dash = make_dash_data_table(df_sector_demands)
+
+            # Function that plots the sector-specific demands
+            sector_demand_plots = html.Div(
+                children=ready_timeseries_plots(
+                    dict_values=output_JSON_file, sector_demands=sector
+                )
+            )
+
+            # Add the heading, table and plot(s) to the content list
+            content_of_section.extend(
+                (html.H4(sector_heading), table_with_dash, sector_demand_plots)
+            )
+
+        return insert_subsection(title="Energy Demands", content=content_of_section)
+
+
 # Styling of the report
 def create_app(results_json, path_sim_output=None):
     r"""Initializes the app and calls all the other functions, resulting in the web app as well as pdf.
