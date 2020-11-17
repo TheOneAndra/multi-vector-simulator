@@ -78,6 +78,15 @@ def convert_plot_data_to_dataframe(plot_data_dict, data_type):
     df: pandas:`pandas.DataFrame<frame>`,
         timeseries for plotting
     """
+
+    # # Modify plot_data_dict to remove non-sector demands
+    # non_sec_demands = []
+    # for demand_key in plot_data_dict.keys():
+    #     if plot_data_dict[demand_key]['energyVector'] != (sector.title()):
+    #         non_sec_demands.append(demand_key)
+    #     for demand_to_drop in non_sec_demands:
+    #         del plot_data_dict[demand_to_drop]
+
     # Later, this dataframe can be passed to a function directly make the graphs with Plotly
     df = pd.DataFrame.from_dict(plot_data_dict[data_type], orient="columns")
 
