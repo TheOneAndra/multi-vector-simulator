@@ -554,7 +554,7 @@ def add_info_flows(settings, dict_asset, flow):
     )
 
 
-def convert_demand_to_dataframe(dict_values):
+def convert_demand_to_dataframe(dict_values, sector_demands=None):
     """Dataframe used for the demands table of the report
 
     Parameters
@@ -567,8 +567,17 @@ def convert_demand_to_dataframe(dict_values):
     :class:`pandas.DataFrame<frame>`
 
     """
-    # Creating a dataframe for the demands
-    demands = dict_values[ENERGY_CONSUMPTION]
+
+    if sector_demands is None:
+        demands = dict_values[ENERGY_CONSUMPTION]
+    else:
+        demands = dict_values[ENERGY_CONSUMPTION]
+        non_sec_demands = []
+        for demand_key in demands.keys():
+            if demands[demand_key]["energyVector"] != (sector_demands.title()):
+                non_sec_demands.append(demand_key)
+        for demand_to_drop in non_sec_demands:
+            del demands[demand_to_drop]
 
     # Removing all columns that are not actually from demands
     drop_list = []
@@ -582,7 +591,7 @@ def convert_demand_to_dataframe(dict_values):
         elif DSO_FEEDIN in column_label:
             drop_list.append(column_label)
 
-    # Remove some elements from drop_list (ie. sinks that are not demands) from the dict holding demand data
+    # Remove some elements from drop_list (ie. sinks that are not demands) from data
     for item in drop_list:
         del demands[item]
 
@@ -593,14 +602,14 @@ def convert_demand_to_dataframe(dict_values):
             {
                 dem: [
                     demands[dem][UNIT],
-                    demands[dem][ENERGY_VECTOR],
+                    demands[dem]["energyVector"],
                     demands[dem][TIMESERIES_PEAK][VALUE],
                     demands[dem][TIMESERIES_AVERAGE][VALUE],
                     demands[dem][TIMESERIES_TOTAL][VALUE],
                 ]
             }
         )
-
+    # Creating a dataframe with all of the demands
     df_dem = pd.DataFrame.from_dict(
         demand_data,
         orient="index",
